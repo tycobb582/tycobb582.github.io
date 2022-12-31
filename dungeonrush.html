@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Tyler Cobb -- Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/my.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+                <!-- Definition List -->
+                <section>
+					<ul class="actions stacked align-center">
+						<li><a href="https://tycobb582.github.io" class="button" style="margin-top: 3%;">Homepage</a></li>
+					</ul>
+                    <header>
+                        <h3 class="align-center">Dungeon Rush</h3>
+                    </header>
+                    <div class="content" style="margin-left:7.5%; margin-right:7.5%">
+
+                        <dl>
+                            <dt>Project Description</dt>
+                            <dd>
+                                <p>Dungeon Rush is a turn-based RPG x endless runner game that I built in Python
+									alongside one other teammate. I designed and pitched the original concept, and
+									programmed the combat engine and runner-mode abilities. In the game,
+									players control a party of three characters (a warrior, archer, and wizard).
+									The main gamemode is an auto-runner game in which the player must avoid obstacles
+									and reach the end goal within the time limit. If the player collides with an
+									enemy, they must defeat that enemy within a turn-based battle system. They
+									must make decisions quickly to save as much time as possible. Each character and
+									enemy has unique stats and abilities, and in the runner mode, each playable character
+									has unique abilities that help the player to avoid obstacles.
+								</p>
+                            </dd>
+                            <dt>Project Goals</dt>
+                            <dd>
+								<p>
+									My goal with this project was to design a unique concept that would give me experience
+									programming several different game mechanics and make for fun and interesting
+									gameplay. I also worked to apply many of the object-oriented programming technziques 
+									that I had learned over the course of my freshman year. The three main object types (player, 
+									enemy, obstacle) inherited from a base class which made it easy to build content
+									into the game.
+								</p>
+								<div class="align-center">
+									<img src="images/dungeon-rush/enemyUpdate.png" />
+								</div>
+								<p style="padding-top:2%">
+									For example, all collision between players and enemies is handled by the base enemy class,
+									and all of the debuffs we implemented are handled by the base class as well.
+								</p>
+								<p>
+									Another aspect of the game that I played a large role in programming was the level manager.
+									In order to make it easy to add new levels to the game, I created a level dictionary
+									which would store all of the informtation that the game loop needed in order to
+									run a new level, which made it simple to balance and modify different sections of
+									the game.
+								</p>
+								<div class="align-center">
+									<img src="images/dungeon-rush/levelDict.png" />
+								</div>
+								<p style="padding-top:2%">
+									Left to right, the data included the player's speed, time range between enemy spawns,
+									list of potential enemy spawns, the leve's boss, the amount of distance from the
+									player's starting location to the boss, and the level's timer. These were all of the 
+									variable that we wanted to modify between levels, and storing them in this way allowed us
+									to both add and scale the difficulty of levels on the fly. 
+								</p>
+
+                            </dd>
+                            <dt>Reflection</dt>
+                            <dd>
+                                <p>Looking back on my code, there are certainly many improvements that could be made.
+									For instance, while the code for drawing enemies could easily have been implemented in
+									the base enemy class, I ended up creating separate functions for each enemy type.
+									Despite the naive implementation of many things, I am quite proud of how this project
+									turned out. I was able to design a concept, create a development timeline, and execute
+									on it. I also gained valuable experience on how to collaborate with other programmers and
+									utilize version control software, and I learned firsthand how essential it is to
+									pre-plan the overarching systems that need to be programmed into the game.
+								</p>
+                            </dd>
+                        </dl>
+						<ul class="actions stacked align-center">
+							<li><a href="https://github.com/tycobb582/Dungeon-Rush" class="button">Check it out on GitHub</a></li>
+						</ul>
+
+                    </div>
+                </section>
+
+				<!-- Footer -->
+					<footer class="wrapper style1 align-center">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://github.com/tycobb582" class="icon brands style2 fa-github"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.linkedin.com/in/tyler-cobb-960896238/" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="mailto:tycobb582@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+							</ul>
+							<p>Initial template designed by <a href="https://html5up.net">HTML5 UP</a>.</p>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
