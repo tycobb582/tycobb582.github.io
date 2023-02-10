@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Tyler Cobb -- Trash Panda Party Pack</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/my.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+                <section>
+					<ul class="actions stacked align-center">
+						<li><a href="https://tycobb582.github.io" class="button" style="margin-top: 3%;">Homepage</a></li>
+					</ul>
+					<header>
+                        <h3 class="align-center">Trash Panda Party Pack</h3>
+                    </header>
+                    <div class="content" style="margin-left:7.5%; margin-right:7.5%">
+
+                        <dl>
+                            <dt>Project Description</dt>
+                            <dd>
+                                <p>
+									TPPP is a game that I worked on alongside nine others for Global Game Jam 2023. The bulk of the 
+									game was completed in the three days allotted for the jam, but we have plans to continue development and
+									some features have been added since the jam. It is a collection of minigames all based around the jam theme of "Roots". 
+									I worked on the project as both a programmer and a designer; I helped come up with ideas for our minigames and the game's overall structure,
+									I took on programming the overarching game systems as well as the Spudacus minigame (which I programmed 
+									alongside one other programmer), and after the Spudacus level was done I helped others bug fix their
+									minigames. 
+								</p>
+                            </dd>
+							<div class="align-center">
+								<img src="images/TPPP/spudacus.png" />
+							</div>
+                            <dt>Project Goals</dt>
+                            <dd>
+								<p>
+									With seven team members who wanted to be dedicated programmers on the project, we quickly settled on the
+									minigame collection idea because it would allow us to splinter off into teams of 1-2 and give everyone
+									on the project something that they could meaningfully contribute. With two members dedicated to artwork and 
+									one musician working on the project as well, our main goal was to end up with a polished project that contained
+									a minimum of three playable minigames. My own goals were to contribute as well as I could, and to get more experience
+									developing alongside artists. 
+								</p>
+								<p>
+									I began the project working on the Spudacus minigame, which has the player switching between two different shields
+									in order to block against the two types of projectiles coming at them. It was inspired by a similar minigame that our
+									team saw when we did research on the minigame collection Ape Academy, but I added the spin of having to swap between different
+									shields. My partner on the minigame programmed the projectiles and their spawners, while I took on the player and UI elements.
+									Starting out, we didn't have the assets for the differnt shield types, so I swapped materials on a primitive cube in order to
+									test the mechanic. Then, when the assets were added to the project, I adjusted the code to switch the active flag on the two
+									meshes.
+								</p>
+								<div class="align-center">
+									<img src="images/TPPP/shieldswap.png" />
+								</div>
+								<p>
+									The code reads the value of the ShieldSwap input event, and checks if there is a shield change already in progress. Then, it executes
+									the code to swap the shields and changes the curShield variable so that the projectiles can see which shield they're hitting. I decided
+									to use an enum for the different shield types to make the code more readable for myself and others on the project. After the swap, the ShieldChange
+									boolean is set back to true to indicate that the process is done. This prevents the player from being able to hold the swap button down and
+									change shields repeatedbly without needing to press the button again.
+								</p>
+								<div class="align-center">
+									<img src="images/TPPP/changegame.png" />
+								</div>
+								<p>
+									Once Spudacus was essentially completed, I moved on to working on the game's main state controller that would handle our continuous gameplay
+									mode (as opposed to our level select mode). Our idea was that after a player beat a minigame in this mode, they would return to a screen that
+									would gradually show a tree and its roots growing over time depending on how many games they beat. The player would have to play through all
+									of the minigames in a randomized order, and at multiple difficulty levels. To achieve this, I created a set list which stored the name of each minigame
+									three times (for the three difficulties), then shuffled that list based on an implementation of the Fisher-Yates shuffle algorithm. I decided to store
+									all of the game names as strings rather than create an enum so that I could plug in an element from the set list when it came time to load the minigame scene.
+								</p>
+                            </dd>
+                            <dt>Reflection</dt>
+                            <dd>
+                                <p>
+									Without a doubt, this was the best game jam I have participated in to date. I had fun hanging out and getting to know everyone on the team, and all of
+									us were able to deliver on our chosen minigames. I also very much enjoyed the opportunity to work with one of our artists on the Spudacus level as 
+									we planned out what assets we needed and how the scene would look. It was an incredibly positive experience overall, and I was able to get more valuable experience
+									developing with a team, bug fixing, and sorting out merge conflicts. If there's one thing I would have done differently, it probably would have been to jump on creating
+									and testing some functionality for our main game mode first before building out the minigames. It wouldn't have been as fun as working on Spudacus, but I think from a project management
+									standpoint it would have been wiser to have had someone on that job before the latter half of the development time. Most of the code for the main mode I reworked and implemented
+									in the days since the jam. Also, our whole team had to learn the hard way about the need to create builds of the project as early as possible. We started getting around to that 
+									at about an hour before submission time, and all sorts of problems suddenly started to rise up from that, so a lot of panic could have been avoided if we started sooner.
+									In addition, while working on that main mode I had to contend with the problem of things working within the editor, but breaking when tested in the build. Through that
+									bug fixing process I've learned to avoid certain methods of trying to reference objects in the scene, and how to deal with objects that need to persist
+									across multiple scene loads.			
+								</p>
+                            </dd>
+                        </dl>
+						<ul class="actions stacked align-center">
+							<li><a href="https://github.com/tycobb582/TPPPBuild" class="button">Download a build from GitHub</a></li>
+						</ul>
+
+                    </div>
+                </section>
+
+				<!-- Footer -->
+					<footer class="wrapper style1 align-center">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://github.com/tycobb582" class="icon brands style2 fa-github"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.linkedin.com/in/tyler-cobb-960896238/" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="mailto:tycobb582@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+							</ul>
+							<p>Initial template designed by <a href="https://html5up.net">HTML5 UP</a>.</p>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
