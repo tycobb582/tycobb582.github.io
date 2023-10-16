@@ -34,9 +34,9 @@
                                     Cowboy Defense Force is a multiplayer FPS built in Unreal Engine 5. It was created
                                     by a team of five programmers for the 2023 Epic MegaJam with the theme of "antiquated future". 
                                     The game was designed to play similarly to Call of Duty's Zombies gamemode, with the twist of 
-                                    taking place in a cyberpunk / western fusion setting. The player takes on the role of a cowboy 
+                                    taking place in a cyberpunk + western fusion setting. The player takes on the role of a cowboy 
                                     defending their land from robots sent to seize it. They can equip themselves with up to four revolvers 
-                                    of various kinds, which automatically reload when placed in their mechanical holsters. Dealing 
+                                    of various kinds, which automatically reload when stored in their mechanical holsters. Dealing 
                                     damage and farming crops earns the player cash which can be used to purchase new weapons.
 								</p>
                             </dd>
@@ -54,13 +54,12 @@
                                 <o>
                                     The biggest challenge that I faced during this project was training the rest of the team
                                     to consider what they need to do to get their systems working in multiplayer. On the first
-                                    day of work on the project, I began by taking about twenty minutes to explain Unreal replication 
+                                    day of work on the project, I began by taking time to explain Unreal replication 
                                     and RPCs to the group members that were able to be present. This proved to be very helpful;
                                     though they didn't totally understand how everything worked, the quick crash course was enough
-                                    to enable the team to get started with prepping things for multiplayer, and many of the
-                                    questions and difficulties that they ran into were easy enough to solve. With each problem that
-                                    we worked through, their understanding grew, and I believe that if we were to work on another
-                                    multiplayer game in the future, we would be able to work through tasks much quicker.
+                                    to enable the team to get started with prepping things for multiplayer. With each problem that
+                                    we worked through during development, their understanding grew, and I believe that if we were to work on another
+                                    multiplayer game in the future, we would be able to burn through tasks much quicker.
                                 </o>
 								<div class="align-center" style="padding-top:2%;">
 									<img src="images/cowboy/crop_code.png" />
@@ -70,8 +69,8 @@
                                     designer came up with the idea, and I took it upon myself to get it implemented because I believed
                                     it fit well with our game's theming and helped to differentiate the concept more from its inspiration.
                                     For our farming system, I made a crop spot object where crops can be grown. When the player interacts
-                                    with them, they plant a seed which automatically grows. The crop object has two stages of growth, each
-                                    with two possible meshes that could display. Rather than use hard references for each of the possible
+                                    with them, they plant a seed which automatically grows. The crop object has three stages of growth, with the last two
+                                    having two possible meshes that could display. Rather than use hard references for each of the possible
                                     meshes, I opted for soft references that could be loaded asynchronously when needed. 
 								</p>
                                 <div class="align-center" style="padding-top:2%;">
@@ -100,7 +99,7 @@
                             <dd>
                                 <p>
                                     In the end, I feel happy with what I was able to accomplish for this project. I was able to make an impact on
-                                    a wide variety of features; I built the player HUD, implemented the revive mechanic, worked with the weapon system,
+                                    a wide variety of features: I built the player HUD, implemented the revive mechanic, worked with the weapon system,
                                     and created the farming system, all on top of being the head networking programmer. During this project, one important
                                     thing that I learned was how to add sockets to skeletal mesh objects. While the other weapons in our game used hitscan,
                                     the grenades I created were tangible projectiles. This meant that I had to find some way to make it look like they were
