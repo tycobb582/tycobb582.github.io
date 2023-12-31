@@ -20,118 +20,106 @@
 			<h1 class="hName">Tyler Cobb</h1>
 			<ul>
 				<li><a href="index.html">Home</a></li>
-			<!--
-				<li><a href="index.html">About</a></li>
-			-->
-				<li><a href="resume.html">Resume</a></li>
-			<!--	<li>
-					<div class="dropdown">
-						<p class="dropButton">
-							Projects
-						</button>
-						<div class="dropdownContent">
-							<a href="vf.html">Chaos Pattern</a>
-							<a href="cowboy.html">Cowboy Defense Force</a>
-							<a href="tppp.html">Trash Panda Party Pack</a>
-							<a href="w(rat)h.html">w(rat)h</a>
-							<a href="dungeonrush.html">Dungeon Rush</a>
-							<a href="shapescramble.html">Shape Scramble</a>
-						</div>
-					</div>
+				<li>
+					<a id = "drop" href="#">Projects ▾</a>
+					<ul id = "droplist" class="dropdown">
+						<li><a href="chaospattern.html">Chaos Pattern</a></li>
+						<li><a href="cowboy.html">Cowboy Defense Force</a></li>
+						<li><a href="tppp.html">Trash Panda Party Pack</a></li>
+						<li><a href="w(rat)h.html">w(rat)h</a></li>
+						<li><a href="dungeonrush.html">Dungeon Rush</a></li>
+						<li><a href="shapescramble.html">Shape Scramble</a></li>
+					</ul>
 				</li>
-			<-->
+				<li><a href="about.html">About</a></li>
+				<li><a href="resume.html">Resume</a></li>
 			</ul>
 		</nav>
 
 
 		<!-- Wrapper -->
-		<div id="wrapper" class="divided">
+		<section id="wrapper">
+
+            <div id="wrapper" class="divided">
+                <section class="wrapper style1 align-center">
+                    <div class="inner" style="margin-top: 100px;">
+                        <h1>Shape Scramble</h1>
+                    </div>
+                </section>
+            </div>
 
 			<section>
-				<header>
-					<h3 class="align-center">Shape Scramble</h3>
-				</header>
-				<div class="content" style="margin-left:7.5%; margin-right:7.5%">
+				<div class="content">
+					<h2>Project Description</h2>
+					<p>Shape Scramble is a 2D shooter game programmed in python that implements
+						math concepts involving vectors and matrices. The objective of the game
+						is to survive for as long as possible while enemy shapes chase you. You gain
+						points by shooting enemies and collecting triangles, and lose points when
+						you collect red traingles, enemies collide with you, or your shots hit the boundaries.
+						This is a class project, and the concept is not original.
+					</p>
+					<h2>Project Goals</h2>
+					<p>
+						My primary goal for this project was to build the program according to the specs of
+						the assignment, but also, I wanted to find out if I could increase the accuracy of
+						collision between shots and enemies. While programming the assignment, I struggled with
+						the idea of how to determine collision between the player's shot and polygons with sides
+						greater than four. This was not a problem that was solved in class, and using the approximations
+						that I had learned resulted in what I felt was janky gameplay. I spent most
+						of my time with this project on developing an algorithm to remedy this.
+					</p>
+					<div class="align-center">
+						<img src="images/shape-scramble/aabbtest.png" />
+					</div>
+					<p style="padding-top:2%">
+						First, the game would detect collision between the shot and an axially-aligned bounding box.
+						If the colliding shape was a square, the collision would immediately return true. If the colliding
+						shape is a triangle, the code jumps to the further step of calculating circle-triangle collision.
+						If the colliding shape is any other polygon, the program calls the more intensive circle-polygon
+						collision function to determine whether a collision occured. 
+					</p>
+					<div class="align-center">
+						<img src="images/shape-scramble/circlepoly.png" />
+					</div>
+					<p style="padding-top:2%">
+						This code applies the same methods used to determine collision between a circle and a triangle,
+						but for an entire polygon. The function determines the total area covered
+						by triangles that span from the circle's center to each point in the shape, then subtracts the area
+						of the circle's sector that was counted in this calculation. If a collsion occurs, this should result
+						in the total area calculated being less than or equal to the actual area of the shape.
+					</p>
 
-					<dl>
-						<dt>Project Description</dt>
-						<dd>
-							<p>Shape Scramble is a 2D shooter game programmed in python that implements
-								math concepts involving vectors and matrices. The objective of the game
-								is to survive for as long as possible while enemy shapes chase you. You gain
-								points by shooting enemies and collecting triangles, and lose points when
-								you collect red traingles, enemies collide with you, or your shots hit the boundaries.
-								This is a class project, and the concept is not original.
-							</p>
-						</dd>
-						<dt>Project Goals</dt>
-						<dd>
-							<p>
-								My primary goal for this project was to build the program according to the specs of
-								the assignment, but also, I wanted to find out if I could increase the accuracy of
-								collision between shots and enemies. While programming the assignment, I struggled with
-								the idea of how to determine collision between the player's shot and polygons with sides
-								greater than four. This was not a problem that was solved in class, and using the approximations
-								that I had learned resulted in what I felt was janky gameplay. I spent most
-								of my time with this project on developing an algorithm to remedy this.
-							</p>
-							<div class="align-center">
-								<img src="images/shape-scramble/aabbtest.png" />
-							</div>
-							<p style="padding-top:2%">
-								First, the game would detect collision between the shot and an axially-aligned bounding box.
-								If the colliding shape was a square, the collision would immediately return true. If the colliding
-								shape is a triangle, the code jumps to the further step of calculating circle-triangle collision.
-								If the colliding shape is any other polygon, the program calls the more intensive circle-polygon
-								collision function to determine whether a collision occured. 
-							</p>
-							<div class="align-center">
-								<img src="images/shape-scramble/circlepoly.png" />
-							</div>
-							<p style="padding-top:2%">
-								This code applies the same methods used to determine collision between a circle and a triangle,
-								but for an entire polygon. The function determines the total area covered
-								by triangles that span from the circle's center to each point in the shape, then subtracts the area
-								of the circle's sector that was counted in this calculation. If a collsion occurs, this should result
-								in the total area calculated being less than or equal to the actual area of the shape.
-							</p>
-
-						</dd>
-						<dt>Reflection</dt>
-						<dd>
-							<p>
-								While it seems like this solution may not be perfect in practice, it did result
-								in significantly improved collision detection. Working on this project taught me
-								how useful documentation can be. I would come back to the above function many times and
-								forget exactly how it worked, causing confusion and costing me time. Eventually, I
-								added in the comments you see that help to walk through the logic, which made it much
-								easier to come back to working on the project after breaks. Working on this project also
-								reiterated to me how passionate I am about both problem solving and game development. I greatly
-								enjoyed working through the solution to my issue and I also had fun with the whole project,
-								creating custom sound effects and implementing the specified mechanics in my own interpretation.
-							</p>
-						</dd>
-					</dl>
+					<h2>Reflection</h2>
+					<p>
+						While it seems like this solution may not be perfect in practice, it did result
+						in significantly improved collision detection. Working on this project taught me
+						how useful documentation can be. I would come back to the above function many times and
+						forget exactly how it worked, causing confusion and costing me time. Eventually, I
+						added in the comments you see that help to walk through the logic, which made it much
+						easier to come back to working on the project after breaks. Working on this project also
+						reiterated to me how passionate I am about both problem solving and game development. I greatly
+						enjoyed working through the solution to my issue and I also had fun with the whole project,
+						creating custom sound effects and implementing the specified mechanics in my own interpretation.
+					</p>
 					<ul class="actions stacked align-center">
 						<li><a href="https://github.com/tycobb582/Shape-Scramble" class="button">Check it out on GitHub</a></li>
 					</ul>
 
 				</div>
 			</section>
+		</section>
 
-			<!-- Footer -->
-				<footer class="wrapper style1 align-center">
-					<div class="inner">
-						<ul class="icons">
-							<li><a href="https://github.com/tycobb582" class="icon brands style2 fa-github"><span class="label">Twitter</span></a></li>
-							<li><a href="https://www.linkedin.com/in/tyler-cobb-960896238/" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-							<li><a href="mailto:tycobb582@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						<p>Initial template designed by <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</div>
-				</footer>
-
-		</div>
+		<!-- Footer -->
+		<footer class="wrapper style1 align-center">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://github.com/tycobb582" class="icon brands style2 fa-github"><span class="label">Twitter</span></a></li>
+					<li><a href="https://www.linkedin.com/in/tyler-cobb-960896238/" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="mailto:tycobb582@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<p>Initial template designed by <a href="https://html5up.net">HTML5 UP</a>.</p>
+			</div>
+		</footer>
 
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>

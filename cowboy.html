@@ -20,131 +20,121 @@
 			<h1 class="hName">Tyler Cobb</h1>
 			<ul>
 				<li><a href="index.html">Home</a></li>
-			<!--
-				<li><a href="index.html">About</a></li>
-			-->
-				<li><a href="resume.html">Resume</a></li>
-			<!--	<li>
-					<div class="dropdown">
-						<p class="dropButton">
-							Projects
-						</button>
-						<div class="dropdownContent">
-							<a href="vf.html">Chaos Pattern</a>
-							<a href="cowboy.html">Cowboy Defense Force</a>
-							<a href="tppp.html">Trash Panda Party Pack</a>
-							<a href="w(rat)h.html">w(rat)h</a>
-							<a href="dungeonrush.html">Dungeon Rush</a>
-							<a href="shapescramble.html">Shape Scramble</a>
-						</div>
-					</div>
+				<li>
+					<a id = "drop" href="#">Projects ▾</a>
+					<ul id = "droplist" class="dropdown">
+						<li><a href="chaospattern.html">Chaos Pattern</a></li>
+						<li><a href="cowboy.html">Cowboy Defense Force</a></li>
+						<li><a href="tppp.html">Trash Panda Party Pack</a></li>
+						<li><a href="w(rat)h.html">w(rat)h</a></li>
+						<li><a href="dungeonrush.html">Dungeon Rush</a></li>
+						<li><a href="shapescramble.html">Shape Scramble</a></li>
+					</ul>
 				</li>
-			<-->
+				<li><a href="about.html">About</a></li>
+				<li><a href="resume.html">Resume</a></li>
 			</ul>
 		</nav>
 
 
 		<!-- Wrapper -->
-        <div id="wrapper" class="divided">
+        <section id="wrapper">
+
+            <div id="wrapper" class="divided">
+                <section class="wrapper style1 align-center">
+                    <div class="inner" style="margin-top: 100px;">
+                        <h1>Cowboy Defense Force</h1>
+                    </div>
+                </section>
+            </div>
 
             <section>
-                <header>
-                    <h3 class="align-center">Cowboy Defense Force</h3>
-                </header>
-                <div class="content" style="margin-left:7.5%; margin-right:7.5%; margin-top: 100px;">
-
-                    <dl>
+                <div class="wrapper style1">
+                    <div class="content">
                         <div class="align-center" style="margin-bottom: 30px;">
-                            <iframe width="960" height="540" src="https://www.youtube.com/embed/AIdaSBUL8Bk?controls=1" allowfullscreen="true"></iframe>
+                            <iframe src="https://www.youtube.com/embed/AIdaSBUL8Bk?controls=1" allowfullscreen="true"></iframe>
                         </div>
-                        <dt>Project Description</dt>
-                        <dd>
-                            <p>
-                                Cowboy Defense Force is a multiplayer FPS built in Unreal Engine 5. It was created
-                                by a team of five programmers for the 2023 Epic MegaJam with the theme of "antiquated future". 
-                                The game was designed to play similarly to Call of Duty's Zombies gamemode, with the twist of 
-                                taking place in a cyberpunk + western fusion setting. The player takes on the role of a cowboy 
-                                defending their land from robots sent to seize it. They can equip themselves with up to four revolvers 
-                                of various kinds, which automatically reload when stored in their mechanical holsters. Dealing 
-                                damage and farming crops earns the player cash which can be used to purchase new weapons.
-                            </p>
-                        </dd>
-                        <dt>Project Goals</dt>
-                        <dd>
-                            <p>
-                                My goal for this project was to become more adept at using Unreal Engine's network replication
-                                features to build online games. I was also interested in working with FPS gameplay, as it was a
-                                genre that I had yet to develop for. Our team had one week to complete this project, which for us 
-                                meant the weekend and evenings during the week. 
-                            </p>
-                            <o>
-                                The biggest challenge that I faced during this project was training the rest of the team
-                                to consider what they need to do to get their systems working in multiplayer. On the first
-                                day of work on the project, I began by taking time to explain Unreal replication 
-                                and RPCs to the group members that were able to be present. This proved to be very helpful;
-                                though they didn't totally understand how everything worked, the quick crash course was enough
-                                to enable the team to get started with prepping things for multiplayer. With each problem that
-                                we worked through during development, their understanding grew, and I believe that if we were to work on another
-                                multiplayer game in the future, we would be able to burn through tasks much quicker.
-                            </o>
-                            <div class="align-center" style="padding-top:2%;">
-                                <img src="images/cowboy/crop_code.png" />
-                            </div>
-                            <p style="padding-top:2%">
-                                One of my favorite parts of working on this project was building the farming system. Our level
-                                designer came up with the idea, and I took it upon myself to get it implemented because I believed
-                                it fit well with our game's theming and helped to differentiate the concept more from its inspiration.
-                                For our farming system, I made a crop spot object where crops can be grown. When the player interacts
-                                with them, they plant a seed which automatically grows. The crop object has three stages of growth, with the last two
-                                having two possible meshes that could display. Rather than use hard references for each of the possible
-                                meshes, I opted for soft references that could be loaded asynchronously when needed. 
-                            </p>
-                            <div class="align-center" style="padding-top:2%;">
-                                <img src="images/cowboy/crop_code2.png" />
-                            </div>
-                            <p style="padding-top:2%">
-                            <p>
-                                When the crop reaches its final stage, it acquires a tag which permits players to interact with the object,
-                                harvesting the crop and adding to the player's cash. I created the interact event as part of a Blueprint
-                                Interface, which allows for easy and quick implementation of new interactible objects.
-                            </p>
-                            <div class="align-center" style="padding-top:2%;">
-                                <img src="images/cowboy/grenade_code.png" />
-                            </div>
-                            <p style="padding-top:2%">
-                            <p>
-                                My work on this project also involved a fair amount of C++ coding, such as with the Grenade object I created.
-                                For the grenade's movement, I was able to use Unreal's built-in Projectile Movement Component to quickly
-                                establish the speed and bounciness of the explosives. For the actual exploding of the thing though, I had
-                                to take matters into my own hands. The code above shows how the grenade calculates damage. The final value is scaled
-                                based on distance from the hit actor, thus making it so that actors on the edge of the explosion are less
-                                affected compared to those caught in the center of the blast.
-                            </p>
-                        </dd>
-                        <dt>Reflection</dt>
-                        <dd>
-                            <p>
-                                In the end, I feel happy with what I was able to accomplish for this project. I was able to make an impact on
-                                a wide variety of features: I built the player HUD, implemented the revive mechanic, worked with the weapon system,
-                                and created the farming system, all on top of being the head networking programmer. During this project, one important
-                                thing that I learned was how to add sockets to skeletal mesh objects. While the other weapons in our game used hitscan,
-                                the grenades I created were tangible projectiles. This meant that I had to find some way to make it look like they were
-                                naturally shooting from the player's gun, and I was able to do that by adding custom sockets to the player's mesh.
-                                I haven't done much work with fitting different visual elements together in UE, and I think the knowledge of how
-                                to use this feature will come in handy if I need to work with meshes more in the future.
-                            </p>
-                            <p>
-                                Also, thanks to the MegaJam site, my team and I were able to become more familiar with all of the resources available
-                                to developers working in UE. Quixel especially proved to be a fantastic resource for high quality assets that we will
-                                certainly consider when developing any future jams. As an engineer-heavy team, tools like this are essential for
-                                creating a quality product.
-                            </p>
-                        </dd>
-                    </dl>
-                    <ul class="actions stacked align-center">
-                        <li><a href="https://itch.io/jam/2023-epic-megajam/rate/2275706" class="button">Download the build from itch.io</a></li>
-                    </ul>
-
+                        <h2>Project Description</h2>
+                        <p>
+                            Cowboy Defense Force is a multiplayer FPS built in Unreal Engine 5. It was created
+                            by a team of five programmers for the 2023 Epic MegaJam with the theme of "antiquated future". 
+                            The game was designed to play similarly to Call of Duty's Zombies gamemode, with the twist of 
+                            taking place in a cyberpunk + western fusion setting. The player takes on the role of a cowboy 
+                            defending their land from robots sent to seize it. They can equip themselves with up to four revolvers 
+                            of various kinds, which automatically reload when stored in their mechanical holsters. Dealing 
+                            damage and farming crops earns the player cash which can be used to purchase new weapons.
+                        </p>
+                        <h2>Project Goals</h2>
+                        <p>
+                            My goal for this project was to become more adept at using Unreal Engine's network replication
+                            features to build online games. I was also interested in working with FPS gameplay, as it was a
+                            genre that I had yet to develop for. Our team had one week to complete this project, which for us 
+                            meant the weekend and evenings during the week. 
+                        </p>
+                        <p>
+                            The biggest challenge that I faced during this project was training the rest of the team
+                            to consider what they need to do to get their systems working in multiplayer. On the first
+                            day of work on the project, I began by taking time to explain Unreal replication 
+                            and RPCs to the group members that were able to be present. This proved to be very helpful;
+                            though they didn't totally understand how everything worked, the quick crash course was enough
+                            to enable the team to get started with prepping things for multiplayer. With each problem that
+                            we worked through during development, their understanding grew, and I believe that if we were to work on another
+                            multiplayer game in the future, we would be able to burn through tasks much quicker.
+                        </p>
+                        <div class="align-center">
+                            <iframe class="bpcode" src="https://blueprintue.com/render/bah1bs3l/" scrolling="no" allowfullscreen></iframe>
+                        </div>
+                        <p style="padding-top:2%">
+                            One of my favorite parts of working on this project was building the farming system. Our level
+                            designer came up with the idea, and I took it upon myself to get it implemented because I believed
+                            it fit well with our game's theming and helped to differentiate the concept more from its inspiration.
+                            For our farming system, I made a crop spot object where crops can be grown. When the player interacts
+                            with them, they plant a seed which automatically grows. The crop object has three stages of growth, with the last two
+                            having two possible meshes that could display. Rather than use hard references for each of the possible
+                            meshes, I opted for soft references that could be loaded asynchronously when needed. 
+                        </p>
+                        <div class="align-center">
+                            <iframe class="bpcode" src="https://blueprintue.com/render/jjo6vd7s/" scrolling="no" allowfullscreen></iframe>
+                        </div>
+                        <p style="padding-top:2%">
+                        <p>
+                            When the crop reaches its final stage, it acquires a tag which permits players to interact with the object,
+                            harvesting the crop and adding to the player's cash. I created the interact event as part of a Blueprint
+                            Interface, which allows for easy and quick implementation of new interactible objects.
+                        </p>
+                        <div class="align-center" style="padding-top:2%;">
+                            <img src="images/cowboy/grenade_code.png" />
+                        </div>
+                        <p style="padding-top:2%">
+                        <p>
+                            My work on this project also involved a fair amount of C++ coding, such as with the Grenade object I created.
+                            For the grenade's movement, I was able to use Unreal's built-in Projectile Movement Component to quickly
+                            establish the speed and bounciness of the explosives. For the actual exploding of the thing though, I had
+                            to take matters into my own hands. The code above shows how the grenade calculates damage. The final value is scaled
+                            based on distance from the hit actor, thus making it so that actors on the edge of the explosion are less
+                            affected compared to those caught in the center of the blast.
+                        </p>
+                        <h2>Reflection</h2>
+                        <p>
+                            In the end, I feel happy with what I was able to accomplish for this project. I was able to make an impact on
+                            a wide variety of features: I built the player HUD, implemented the revive mechanic, worked with the weapon system,
+                            and created the farming system, all on top of being the head networking programmer. During this project, one important
+                            thing that I learned was how to add sockets to skeletal mesh objects. While the other weapons in our game used hitscan,
+                            the grenades I created were tangible projectiles. This meant that I had to find some way to make it look like they were
+                            naturally shooting from the player's gun, and I was able to do that by adding custom sockets to the player's mesh.
+                            I haven't done much work with fitting different visual elements together in UE, and I think the knowledge of how
+                            to use this feature will come in handy if I need to work with meshes more in the future.
+                        </p>
+                        <p>
+                            Also, thanks to the MegaJam site, my team and I were able to become more familiar with all of the resources available
+                            to developers working in UE. Quixel especially proved to be a fantastic resource for high quality assets that we will
+                            certainly consider when developing any future jams. As an engineer-heavy team, tools like this are essential for
+                            creating a quality product.
+                        </p>
+                        <ul class="actions stacked align-center">
+                            <li><a href="https://itch.io/jam/2023-epic-megajam/rate/2275706" class="button">Download the build from itch.io</a></li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
@@ -160,7 +150,7 @@
                     </div>
                 </footer>
 
-        </div>
+        </section>
 
 		<!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
