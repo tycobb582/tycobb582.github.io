@@ -2796,9 +2796,27 @@ input, select, textarea {
 
 /* iframe */
 iframe {
-	width: 900px;
-	height: 500px;
+	width: 100%;
 }
+
+@media screen and (max-width: 1920px)
+{
+	iframe
+	{
+		height: 500px;
+	}
+}
+
+@media screen and (max-width: 480px)
+{
+	iframe
+	{
+		height: 125px;
+	}
+}
+
+
+
 
 .bpcode {
 	width: 700px;
