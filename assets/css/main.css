@@ -127,10 +127,10 @@ input, select, textarea {
 		position: fixed;
 		top: 0;
 		width: 100%;
-		height: 80px;
-		bottom: 20px;
+		height: 7.4%;
+		bottom: 1.8%;
 		background-color: #103c52;
-		padding: 0 200px 0 100px;
+		padding: 0 10.4% 0 5%;
 		box-sizing: border-box;
 		display: flex;
 		justify-content: space-between;
@@ -412,11 +412,11 @@ input, select, textarea {
 		}
 
 		h1 {
-			font-size: 2.5rem;
+			font-size: 2rem;
 		}
 
 		h2 {
-			font-size: 2rem;
+			font-size: 1.5rem;
 		}
 
 		h3 {
