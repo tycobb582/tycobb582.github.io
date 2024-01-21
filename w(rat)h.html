@@ -12,31 +12,23 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
         <link rel="stylesheet" href="assets/css/my.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script
+		src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		<script>
+			$(function()
+			{
+				$('#navigation').load("assets/htmlcommon/navheader.html");
+				$('#footer').load("assets/htmlcommon/footer.html");
+			}
+			)
+		</script>
 	</head>
 	<body class="is-preload">
 
 		<!-- Nav Header -->
-		<nav id="navbar">
-			<h1 class="hName">Tyler Cobb</h1>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li>
-					<a id = "drop" href="#">Projects ▾</a>
-					<ul id = "droplist" class="dropdown">
-						<li><a href="chaospattern.html">Chaos Pattern</a></li>
-						<li><a href="cowboy.html">Cowboy Defense Force</a></li>
-						<li><a href="tppp.html">Trash Panda Party Pack</a></li>
-						<li><a href="w(rat)h.html">w(rat)h</a></li>
-						<li><a href="dungeonrush.html">Dungeon Rush</a></li>
-						<li><a href="shapescramble.html">Shape Scramble</a></li>
-					</ul>
-				</li>
-				<li><a href="about.html">About</a></li>
-				<li><a href="resume.html">Resume</a></li>
-			</ul>
-		</nav>
-
-
+		<div id="navigation"></div>
 
 		<!-- Wrapper -->
 		<div id="wrapper" class="divided">
@@ -106,16 +98,7 @@
 		</div>
 
 		<!-- Footer -->
-		<footer class="wrapper style1 align-center">
-			<div class="inner">
-				<ul class="icons">
-					<li><a href="https://github.com/tycobb582" class="icon brands style2 fa-github"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.linkedin.com/in/tyler-cobb-960896238/" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-					<li><a href="mailto:tycobb582@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
-				</ul>
-				<p>Initial template designed by <a href="https://html5up.net">HTML5 UP</a>.</p>
-			</div>
-		</footer>
+		<div id="footer"></div>
 
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
@@ -125,7 +108,6 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script src="assets/js/navbar.js"></script>
 
 	</body>
 </html>

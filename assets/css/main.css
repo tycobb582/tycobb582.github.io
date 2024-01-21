@@ -127,8 +127,8 @@ input, select, textarea {
 		position: fixed;
 		top: 0;
 		width: 100%;
-		height: 7.4%;
-		bottom: 1.8%;
+		height: 8%;
+		bottom: 20px;
 		background-color: #103c52;
 		padding: 0 10.4% 0 5%;
 		box-sizing: border-box;
@@ -144,7 +144,6 @@ input, select, textarea {
 		margin: 0;
 		padding: 0;
 		display: flex;
-		overflow: hidden;
 	}
 
 	#navbar ul li
@@ -157,13 +156,23 @@ input, select, textarea {
 	#navbar ul li a
 	{
 		color: white;
-		padding: 0 20px;
+		padding: 23px 20px;
 		font-size: 1.1em;
 		text-decoration: none;
 		font-weight: bold;
 		text-align: center;
-		line-height: 80px;
+		/*line-height: 80px; previously used for spacing between nav and dropdown*/
 		display: block;
+	}
+
+	@media screen and (max-width: 736px)
+	{
+		#navbar ul li a
+		{
+			padding: 8px 4px;
+			font-size: 1rem;
+			/*line-height: 12px;*/
+		}
 	}
 
 	#navbar ul li a:hover
@@ -204,7 +213,6 @@ input, select, textarea {
 
 	.hName
 	{
-		font-size: 1.8em;
 		color :white;
 		font-weight: bold;
 		text-decoration: none;
@@ -412,7 +420,7 @@ input, select, textarea {
 		}
 
 		h1 {
-			font-size: 2rem;
+			font-size: 1.75rem;
 		}
 
 		h2 {
