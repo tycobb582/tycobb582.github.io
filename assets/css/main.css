@@ -152,20 +152,27 @@ input, select, textarea {
 
 	#navbar ul
 	{
+		height: 100%;
+		padding: 20;
 		margin: 0;
 		padding: 0;
 		display: flex;
+		align-items: center;
 	}
 
 	#navbar ul li
 	{
+		height: 100%;
 		list-style: none;
 		float: left;
 		display: inline-block;
+		align-items: center;
 	}
 
 	#navbar ul li a
 	{
+		align-self: center;
+		height: 100%;
 		color: white;
 		padding: 20px 20px;
 		font-size: 1.1em;
@@ -196,6 +203,7 @@ input, select, textarea {
 		display: block !important;
 		float: none;
 		padding: 0;
+		height: auto;
 	}
 
 	#navbar ul li ul.dropdown li:hover {
@@ -207,13 +215,16 @@ input, select, textarea {
 	}
 
 	#navbar ul li ul.dropdown li a {
+		padding: 20px 20px;
 		font-size: 0.8em;
 	}
+	
 
 	@media screen and (max-width: 736px)
 	{
 		#navbar ul li ul.dropdown li a
 		{
+			padding: 20px 10px;
 			font-size: 0.8rem;
 		}
 	}
