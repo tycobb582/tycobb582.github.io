@@ -169,7 +169,7 @@ input, select, textarea {
 	{
 		#navbar ul li a
 		{
-			padding: 8px 4px;
+			padding: 20px 10px;
 			font-size: 1rem;
 			/*line-height: 12px;*/
 		}
@@ -197,7 +197,14 @@ input, select, textarea {
 
 	#navbar ul li ul.dropdown li a {
 		font-size: 0.8em;
-		line-height: 60px;
+	}
+
+	@media screen and (max-width: 736px)
+	{
+		#navbar ul li ul.dropdown li a
+		{
+			font-size: 0.8rem;
+		}
 	}
 	
 	#navbar ul li ul.dropdown {
