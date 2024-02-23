@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Tyler Cobb -- Trust Funds</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script
+		src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		<script>
+			$(function()
+			{
+				$('#navigation').load("assets/htmlcommon/navheader.html");
+				$('#footer').load("assets/htmlcommon/footer.html");
+			}
+			)
+		</script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Nav Header -->
+		<div id="navigation"></div>
+
+		<!-- Wrapper -->
+		<section id="wrapper">
+		
+			<div id="wrapper" class="divided">
+				<section class="wrapper style1 align-center">
+					<div class="inner" style="margin-top: 100px;">
+						<h1>Trust Funds</h1>
+					</div>
+				</section>
+			</div>
+			
+			<div class="content">
+				<div class="align-center">
+					<iframe width="960" height="540" src="https://www.youtube.com/embed/CXwN3JgESMs?controls=1" allowfullscreen="true"></iframe>
+				</div>
+
+				<h2>Project Description</h2>
+				<p>
+                    Trust Funds is a cooperative top-down-shooter heist game that I developed within a ten person team for the 2023 Shawnee State
+                    Game Jam. It's design was heavily inspired by the board game Nemesis. All players are tasked with a core objective, but each
+                    player also has a hidden agenda that may require them to work against their team. This could be anything from a requirement that 
+                    that player be caught on security camera to a requirement that another player not survive to the end of the heist, and both the heist and
+                    hidden objectives must be completed to count as a victory. In the week we had to develop this project, I worked primarily on the player's line
+                    of sight system.
+				</p>
+
+				<h2>Accomplishments</h2>
+				<ul>
+					<li>Implemented player line of sight system.</li>
+					<li>Assisted in programming the interaction system.</li>
+					<li>Built functionality for a game lobby.</li>
+				</ul>
+
+				<h2>Objectives and Implementation</h2>
+				<p>
+					With this jam taking place just a couple weeks before the end of the fall semester, myself and the rest of the
+                    team had little time to dedicate to the jam despite the week given to us. Therefore, my goal was to focus on the addition
+                    of the player line of sight mechanic. This would be a high-impact feature to add into the game that would require me to learn
+                    more about materials and postprocessing in UE5, topics that until now I had been largely unfamiliar with.
+				</p>
+                <p>
+                    Unfortunately, I can't take too much credit for the implementation: the process I used was referenced from this great article
+                    by <a href="https://hippowombat.medium.com/tutorial-line-of-sight-visualizer-for-unreal-engine-f32113b1f6f3" style="text-decoration: underline;">Christian Sparks</a>.
+                    However, I can explain the gist of how it works. Tiny instances of a static mesh placed in a radius around the player are each scaled until they collide
+                    with an object in the world. Those meshes are then rendered to a RenderTarget. Finally, a postprocess material is created which culls pixels that correspond
+                    to the areas on the RenderTarget where the meshes were not rendered.
+                </p>
+                <p>
+                    From the gameplay trailer, it's clear that the system could be improved on in a few ways.
+                    There's a tiny bit of space that remains visible beyond obstructing objects. This could probably be fixed by adjusting some settings in the existing system,
+                    though I was unable to solve the issue at the time (there were more important features to work on and I needed to move on). I also would have liked to display 
+                    something in the obstructed areas rather than pure darkness - perhaps an outline of the room and the objects placed within - but time did not allow for that 
+                    idea to be explored.
+                </p>
+
+                <div class="align-center">
+                    <iframe src="https://blueprintue.com/render/73vt0l06/" scrolling="no" allowfullscreen></iframe>
+                </div>
+
+                <p>
+                    My other major role on the project involved setting up the infrastructure for getting players connected and set up in game. The code 
+                    above from the Lobby GameMode shows how the game handles another player connecting to the host. It initializes data for the player,
+                    randomizes their equipment, then sets the player's hidden agenda and updates the lobby UI.
+                </p>
+                <p>
+                    Unfortunately, the online elements for the game did not come together all the way by the end. However, I am proud of how much I was able
+                    to put together in the limited time I had. My work on Chaos Pattern taught me a great deal about network programming in Unreal, and
+                    what took me a couple weeks to research and finish for that project I was able to mostly implement in just a few days.
+                </p>
+
+				<h2>Reflection</h2>
+				<p>
+					This was an incredibly fun jam to be a part of. Our team was very motivated and excited about our concept, which in hindsight
+                    was likely overscoped. The game isn't entirely in a playable state; several features were implemented right before the deadline
+                    and there was not a lot of time to test multiplayer functionality. However, many members of the team are optimistic about revisiting
+                    this project in the future, and I'm hopeful that we might realize our vision one day.
+                <p> 
+                    The best part of working on this project was getting my first experience with creating custom materials and postprocessing effects in Unreal.
+                    It's not an aspect of the engine that I plan to specialize in, but I believe that it's important for me to familiarize myself with as much as I can.
+                    Knowing more about UE generally will make it easier to collaborate with people who work on other areas on the game.
+                    In future projects, it will certainly be a useful tool to have available.
+				</p>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<div id="footer"></div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
