@@ -364,7 +364,8 @@ input, select, textarea {
 	}
 
 	h3 {
-		font-size: 1.5rem;
+		font-size: 1.25rem;
+		margin: 0;
 	}
 
 	h4 {
@@ -444,7 +445,7 @@ input, select, textarea {
 
 	@media screen and (max-width: 736px) {
 
-		p.major {
+		p {
 			font-size: 1.1rem;
 		}
 
