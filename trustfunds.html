@@ -71,7 +71,7 @@
 				</p>
                 <p>
                     Unfortunately, I can't take too much credit for the implementation: the process I used was referenced from this great article
-                    by <a href="https://hippowombat.medium.com/tutorial-line-of-sight-visualizer-for-unreal-engine-f32113b1f6f3" style="text-decoration: underline;">Christian Sparks</a>.
+                    by <a href="https://hippowombat.medium.com/tutorial-line-of-sight-visualizer-for-unreal-engine-f32113b1f6f3" target="_blank" style="text-decoration: underline;">Christian Sparks</a>.
                     However, I can explain the gist of how it works. Tiny instances of a static mesh placed in a radius around the player are each scaled until they collide
                     with an object in the world. Those meshes are then rendered to a RenderTarget. Finally, a postprocess material is created which culls pixels that correspond
                     to the areas on the RenderTarget where the meshes were not rendered.

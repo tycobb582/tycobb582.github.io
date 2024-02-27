@@ -119,17 +119,26 @@ input, select, textarea {
 	
 	.content {
 		margin: 0px calc((100% - 50%) * 0.5) 0px calc((100% - 50%) * 0.5);
+		font-size: 16pt;
 	}
 
-	.content img {
-		max-width: 100%;
+	@media screen and (max-width: 1279px)
+	{
+		.content {
+			margin: 0px calc((100% - 60%) * 0.5) 0px calc((100% - 60%) * 0.5);
+		}
 	}
 
 	@media screen and (max-width: 736px)
 	{
 		.content {
-			margin: 0px calc((100% - 60%) * 0.5) 0px calc((100% - 60%) * 0.5);
+			margin: 0px calc((100% - 70%) * 0.5) 0px calc((100% - 70%) * 0.5);
+			font-size: 14pt;
 		}
+	}
+
+	.content img {
+		max-width: 100%;
 	}
 	
 	/* Navigation */
@@ -174,23 +183,12 @@ input, select, textarea {
 		align-self: center;
 		height: 100%;
 		color: white;
-		padding: 20px 20px;
-		font-size: 1.1em;
+		padding: 20px 20px 0 20px;
+		font-size: 13pt;
 		text-decoration: none;
 		font-weight: bold;
 		text-align: center;
-		/*line-height: 80px; previously used for spacing between nav and dropdown*/
 		display: block;
-	}
-
-	@media screen and (max-width: 736px)
-	{
-		#navbar ul li a
-		{
-			padding: 20px 10px;
-			font-size: 1rem;
-			/*line-height: 12px;*/
-		}
 	}
 
 	#navbar ul li a:hover
@@ -219,16 +217,6 @@ input, select, textarea {
 		font-size: 0.8em;
 	}
 	
-
-	@media screen and (max-width: 736px)
-	{
-		#navbar ul li ul.dropdown li a
-		{
-			padding: 20px 10px;
-			font-size: 0.8rem;
-		}
-	}
-	
 	#navbar ul li ul.dropdown {
 		width: fit-content;
 		position: fixed;
@@ -240,13 +228,107 @@ input, select, textarea {
 		display: block;
 	}
 
-	.hName
+	#hName
 	{
 		color :white;
 		font-weight: bold;
 		text-decoration: none;
+		font-size: 14pt;
 		margin: 0;
 	}
+
+	#hTitle
+	{
+		font-size: 12pt;
+		margin: 0;
+	}
+
+	@media screen and (max-width: 736px)
+	{
+		nav
+		{
+			padding: 0 5% 0 5%;
+		}
+
+		#navbar ul li a
+		{
+			padding: 20px 10px;
+			font-size: 1rem;
+		}
+
+		#navbar ul li ul.dropdown li a
+		{
+			padding: 20px 10px;
+			font-size: 0.8rem;
+		}
+
+		#hName
+		{
+			font-size: 12pt;
+		}
+		
+		#hTitle
+		{
+			font-size: 10pt;
+		}
+	}
+
+	@media screen and (max-width: 500px)
+	{
+
+		#navbar ul li a
+		{
+			padding: 20px 5px;
+			font-size: 0.8rem;
+		}
+
+		#navbar ul li ul.dropdown li a
+		{
+			padding: 20px 10px;
+			font-size: 0.6rem;
+		}
+
+		#hName
+		{
+			font-size: 1rem;
+		}
+		
+		#hTitle
+		{
+			font-size: 0.6rem;
+		}
+	}
+
+	@media screen and (max-width: 300px)
+	{
+		nav
+		{
+			padding: 0 5% 0 5%;
+		}
+
+		#navbar ul li a
+		{
+			padding: 20px 5px;
+			font-size: 0.75rem;
+		}
+
+		#navbar ul li ul.dropdown li a
+		{
+			padding: 20px 10px;
+			font-size: 0.6rem;
+		}
+
+		#hName
+		{
+			font-size: 0.9rem;
+		}
+		
+		#hTitle
+		{
+			font-size: 0.6rem;
+		}
+	}
+	
 
 /* Type */
 
@@ -319,7 +401,7 @@ input, select, textarea {
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 2em 0 2em 0;
 		display: block;
 		margin-block-start: 1em;
 		margin-block-end: 2em;
@@ -329,11 +411,7 @@ input, select, textarea {
 	}
 
 		p.major {
-			font-size: 12pt;
-		}
-
-		p.intro {
-			font-size: 12pt;
+			font-size: 18pt;
 		}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -445,7 +523,7 @@ input, select, textarea {
 
 	@media screen and (max-width: 736px) {
 
-		p {
+		p, li {
 			font-size: 1.1rem;
 		}
 
@@ -459,6 +537,30 @@ input, select, textarea {
 
 		h3 {
 			font-size: 1.15rem;
+		}
+
+		h4 {
+			font-size: 1rem;
+		}
+
+	}
+
+	@media screen and (max-width: 500px) {
+
+		p, li {
+			font-size: 1rem;
+		}
+
+		h1 {
+			font-size: 1.50rem;
+		}
+
+		h2 {
+			font-size: 1.35rem;
+		}
+
+		h3 {
+			font-size: 1.2rem;
 		}
 
 		h4 {
@@ -2264,9 +2366,9 @@ input, select, textarea {
 		white-space: nowrap;
 		font-size: 0.75rem;
 		max-width: 30rem;
-		height: 3.75em;
-		line-height: 3.75em;
-		border-radius: 3.75em;
+		height: 2.75em;
+		line-height: 2.75em;
+		border-radius: 2.75em;
 		padding: 0 2.5em;
 		text-overflow: ellipsis;
 		overflow: hidden;
@@ -5043,7 +5145,7 @@ iframe {
 	}
 
 		.spotlight.style1 .content {
-			padding: 7rem 7rem 5rem 7rem ;
+			padding: 2rem 7rem 1rem 7rem ;
 			-moz-align-self: center;
 			-webkit-align-self: center;
 			-ms-align-self: center;
@@ -5093,10 +5195,11 @@ iframe {
 				border-radius: 0;
 			}
 
+		
 		@media screen and (max-width: 1680px) {
 
 			.spotlight.style1 .content {
-				padding: 5rem 5rem 3rem 5rem ;
+				padding: 2rem 5rem 1rem 5rem ;
 			}
 
 		}
@@ -5104,7 +5207,7 @@ iframe {
 		@media screen and (max-width: 1280px) {
 
 			.spotlight.style1 .content {
-				padding: 4rem 4rem 2rem 4rem ;
+				padding: 2rem 4rem 1rem 4rem ;
 			}
 
 		}
@@ -5112,7 +5215,7 @@ iframe {
 		@media screen and (max-width: 980px) {
 
 			.spotlight.style1 .content {
-				padding: 3.75rem 3rem 1.75rem 3rem ;
+				padding: 2rem 3rem 1rem 3rem ;
 				width: 50%;
 				min-width: 0;
 			}
@@ -5127,7 +5230,7 @@ iframe {
 		@media screen and (max-width: 736px) {
 
 			.spotlight.style1 .content {
-				padding: 2.5rem 2rem 0.5rem 2rem ;
+				padding: 1.5rem 2rem 0.5rem 2rem ;
 			}
 
 		}
@@ -7047,8 +7150,8 @@ iframe {
 			display: block;
 			position: relative;
 			overflow: hidden;
-			width: 22.5rem;
-			max-width: 75vw;
+			width: 17.75rem;
+			max-width: 50vw;
 		}
 
 			.gallery.style2 article .image {
@@ -7094,15 +7197,19 @@ iframe {
 				opacity: 0;
 				padding: 3rem;
 				z-index: 1;
-				font-size: 0.8rem;
 			}
+
+				.gallery.style2 article .caption p
+				{
+					font-size: 0.8rem;
+				}
 
 				.gallery.style2 article .caption a {
 					pointer-events: auto;
 				}
 
 				.gallery.style2 article .caption h2, .gallery.style2 article .caption h3, .gallery.style2 article .caption h4, .gallery.style2 article .caption h5, .gallery.style2 article .caption h6 {
-					font-size: 1.25rem;
+					font-size: 1rem;
 					margin-bottom: 0.25rem;
 				}
 
@@ -7130,7 +7237,15 @@ iframe {
 		@media screen and (max-width: 736px) {
 
 			.gallery.style2 article .caption {
-				padding: 2rem;
+				padding: 2rem 1rem;
+			}
+
+		}
+
+		@media screen and (max-width: 500px) {
+
+			.gallery.style2 article .caption {
+				padding: 1.5rem 0.75rem;
 			}
 
 		}
@@ -7392,7 +7507,7 @@ iframe {
 /* Wrapper (style1) */
 
 	.wrapper.style1 > .inner {
-		padding: 3rem 3.5rem 3rem 3.5rem ;
+		padding: 1rem;
 		margin: 0 auto;
 		max-width: 100%;
 		width: 55rem;
@@ -7405,38 +7520,6 @@ iframe {
 		.wrapper.style1 > .inner.small {
 			width: 32rem;
 		}
-
-	@media screen and (max-width: 1680px) {
-
-		.wrapper.style1 > .inner {
-			padding: 3rem 2.5rem 3rem 2.5rem ;
-		}
-
-	}
-
-	@media screen and (max-width: 1280px) {
-
-		.wrapper.style1 > .inner {
-			padding: 2rem 4rem 2rem 4rem ;
-		}
-
-	}
-
-	@media screen and (max-width: 980px) {
-
-		.wrapper.style1 > .inner {
-			padding: 4.5rem 3rem 2.5rem 3rem ;
-		}
-
-	}
-
-	@media screen and (max-width: 736px) {
-
-		.wrapper.style1 > .inner {
-			padding: 3rem 2rem 1rem 2rem ;
-		}
-
-	}
 
 /* Wrapper (style2) */
 
