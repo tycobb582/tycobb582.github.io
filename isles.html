@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Tyler Cobb -- Isles of Aether</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script
+		src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		<script>
+			$(function()
+			{
+				$('#navigation').load("assets/htmlcommon/navheader.html");
+				$('#footer').load("assets/htmlcommon/footer.html");
+			}
+			)
+		</script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Nav Header -->
+		<div id="navigation"></div>
+
+
+		<!-- Wrapper -->
+		<section id="wrapper">		
+
+            <div id="wrapper" class="divided">
+                <section class="wrapper style1 align-center">
+                    <div class="inner" style="margin-top: 100px;">
+                        <h1>Isles of Aether</h1>
+                    </div>
+                </section>
+            </div>
+
+			<section>
+				<div class="content">
+					<div class="align-center">
+						<iframe width="960" height="540" src="https://www.youtube.com/embed/QSQ-7t18r8E?controls=1" allowfullscreen="true"></iframe>
+					</div>
+
+                    <h3>Note: Current visuals shown are unrepresentative of the final product and will be updated soon.</h3>
+
+					<h2>Project Description</h2>
+
+                    <p>
+                        From the spring semester of my junior year at Shawnee State up until graduation, I
+                        worked alongside an incredibly talented team of classmates to develop our game concept
+                        of "Isles of Aether". The game was envisioned as an action game inspired by titles such
+                        as Ghost of Tsushima, Jedi: Fallen Order, and The Witcher 3. The player character is an adventurer
+                        tasked with putting an end to the destruction and chaos caused by vicious monsters that are plaguing
+                        the majestic Isles in the sky, and they are provided with both sword and sorcery to get the job done.
+                    </p>
+
+					<h2>Accomplishments</h2>
+					<ul>
+						<li>
+                            Assisted with pre-production of the game throughout the spring semester of my junior year 
+                            and the following summer, helping to choose a direction for the project, design combat mechanics, 
+                            and prototype the lock-on and magic systems.
+                        </li>
+                        <li>Elected as Technical Director for the project.</li>
+						<li>Worked alongside other leads to create production plans, assign tasks, and review work.</li> 
+						<li>Utilized the GAS plugin to create and iterate on the game's magic system.</li>
+                        <li>Built an asynchronous GAS attribute listener.</li>
+                        <li>Implemented a universally applicable cooldown GameplayEffect.</li>
+						<li>Programmed the player character's sprinting attack.</li>
+						<li>
+                            Collaborated with other members of the Combat team to rework and improve the game's combat 
+                            throughout the senior spring semester.
+                        </li>
+					</ul>
+
+					<h2>Objectives and Implementation</h2>
+
+                    <H3>GAS Magic System</H3>
+
+                    <p>
+                        This being my senior capstone project, I wanted to carve out a game system for myself to work on
+                        which would showcase my abilities as a programmer. Over the summer I became acquainted with Unreal's GAS
+                        plugin through my work on Chaos Pattern, which struck me as the perfect tool for bringing to life the wide
+                        variety of magical abilities we had designed for the game. I spent my free time building a rough prototype to
+                        showcase what the plugin could do for us, and convinced our Production Lead to approve my strategy. For the majority
+                        of the fall semester, my work on the project consisted of setting up necessary GAS components, building versatile
+                        base classes for each major spell type, training others to be able to work with the GAS framework, 
+                        and addressing bug reports related to the system.
+                    </p>
+
+                    <div class="align-center">
+                        <iframe src="https://blueprintue.com/render/1df0yxs2/" scrolling="no" allowfullscreen></iframe>
+                    </div>
+
+					<p style="padding-top:2%">
+                        The AoE ability class I created serves as a good example of how creating flexible core classes can significantly
+                        speed up content creation in game development. This ActivateAbility event from the class demonstrates the general
+                        process by which all AoE abilities in the game function. Following a check to validate that any costs associated
+                        with casting the ability can be met, the Cast Spell function is called on our Weapon Manager component to return
+                        the AnimMontage that should be used by the casting character when casting this spell. At some point in each spellcast montage, 
+                        a "CastSpell" notifier is sent. When this notify is fired, the ability proceeds with unleashing the actual spell. An IsTargeted boolean
+                        is used as a configuration variable to specify whether the AoE should be placed around the caster or if it should seek other characters
+                        to target. Finally, the GameplayEffect to be distributed by the AoE field is configured, and the actor which handles collision and application
+                        of this effect is spawned. An asynchronous delay task is created to call EndAbility after the ability's lifetime has run out, cleaning up the 
+                        field actor and beginning the ability's cooldown.
+					</p>
+
+					<p>
+						During pre-production, I identified this basic pattern as one which could be applied to all of our AoE spell designs. Creation of this
+                        basic class proved to be very helpful in the production of new abilities. To develop a new AoE spell for the project, all that was needed
+                        was the creation of unique sound and visual effects as well as the GameplayEffect to be applied. Three different programmers were each tasked 
+                        with producing three spells, each of which inherit from one of the core classes I developed (AoE, Projectile, and Buff). Even with handling
+                        implementation of temporary SFX and VFX themselves, and being thrust into having to learn the sparsely documented GAS plugin, my teammates were
+                        all able to complete their tasks in no more than two weeks of work, which speaks to both their own skill and the versatility of this core system.
+					</p>
+
+					<div class="align-center">
+						<img src="images/isles/listenForAttributeChange.png" />
+					</div>
+
+                    <p>
+                        In my work on the magic system, I also implemented two incredibly useful features: an asynchronous attribute listener object, and a universally
+                        applicable cooldown GameplayEffect. The AsynAttributeListener is a blueprint node which can be configured to listen for changes in one or more
+                        GameplayAttributes. This node is basically a wrapper around the GameplayAttributeValueChanged delegate on the Ability System Component and offers 
+                        a quick and simple way to set up events that need to occur whenever a particular attribute is modified. It is being used in our game's UI to update
+                        health and stagger bars for all of our characters.
+                    </p>
+
+                    <div class="align-center">
+						<img src="images/isles/cooldown.png" />
+					</div>
+
+                    <p>
+                        The universal cooldown implementation was mostly referenced from tranek's incredibly helpful <a href="https://github.com/tranek/GASDocumentation" target="_blank" style="text-decoration: underline;">GASDocumentation page</a>, 
+                        and I highly recommend it as a neat and tidy solution to the need for gameplay effects when applying ability cooldowns. In our project, I was able to
+                        implement universal cooldown by adding CooldownDuration and CooldownTag variables to the game's base ability class. When an ability's cooldown is committed,
+                        it dynamically adds its own unique cooldown tag to our singular cooldown GameplayEffect. This effect then uses a custom modifier magnitude calculation to reference
+                        the ability's CooldownDuration and set its own duration to match. By implementing this solution, we saved on the need to create unique GameplayEffect classes for
+                        each ability's cooldown, cutting the work required down to simply creating a unique GameplayTag.
+                    </p>
+
+                    <h3>Sprint Attack</h3>
+
+                    <div class="align-center">
+						<img src="images/isles/Sprint Attack on Enemy.gif"/>
+					</div>
+
+					<p style="padding-top:2%">
+						After receiving feedback on the project from the Shawnee Game Conference in November, we realized the immediate need for more momentum and movement in our
+                        game's combat, which at the time was fairly stiff and wooden. I suggested that we borrow the mechanic of a sprinting attack from other action games
+                        as a way to hasten the player's entry into combat situations and give them an exciting opener attack. I took responsibility for implementing this feature, 
+                        hoping to learn more about Unreal's animation features and the process of implementing an attack in a 3D action game, a task which I had never taken on
+                        in the past.
+					</p>
+
+                    <p>
+                        I faced numerous challenges in implementing this feature, first of which was the acquisition and importation of a suitable temp animation. 
+                        Luckily, I was able to quickly find a free-to-use attack animation from Mixamo that suited our purposes, but after testing I discovered that the animation's
+                        movement was far too slow to fit into the more fast-paced flow of our game's combat. Additionally, the player would always move the same distance for each jump,
+                        even though a shorter jump would be expected when attacking a closer enemy. To fix these issues I disabled root motion on the animation and programmed
+                        the motion of the attack manually. This was handled by using the Suggest Projectile Velocity Custom Arc and Launch Character functions provided by Unreal. To address
+                        the speed of the animation, I ended up splitting the full animation into two separate Animation Sequences, one for the jump segment and one for the recovery segment.
+                        These two segments are put back together in the final Montage and both are sped up, but the recovery segment required a faster play rate than the jump. Additionally, to
+                        improve the attack's feel in combat, I added code to have the attack "snap" to a nearby enemy if they are in the attack path. This eliminates the possibility of missing
+                        an attack just because the angle you attacked at was off by just a degree, and combined with the custom arc for the jump, creates an expected visual of the character landing
+                        just in front of the enemy they intended to strike.
+                    </p>
+
+                    <h3>Combat System</h3>
+
+                    <div class="align-center">
+						<img src="images/isles/Attack Momentum and Direction.gif"/>
+					</div>
+
+                    <p>
+                        Post-SGC, our team undertook a major effort to rethink and overhaul our game's combat. We went back to the games that inspired us and took in-depth notes
+                        on their combat mechanics. After analyzing each game, we identified that the primary elements we needed to develop were the addition of momentum with
+                        each attack and natural-looking reactions to attack impacts to improve the flow of combat and the satisfaction from engaging with it. The first change implemented to
+                        address these was the sprint attack I developed, but while I was working on that, my teammate <a href="https://justingeraldmeyer.wixsite.com/justin-meyers-portfo" target="_blank" style="text-decoration: underline;">Justin Meyer</a> was working on a prototype version of the overhauled
+                        system. Midway through our final semester working on this project, Justin completed his prototype and our team was heavily in favor of implementing the changes that were made.
+                        From that point on, the focus of my work on the project involved working alongside Justin to integrate these changes into Isles, which involved translating 
+                        a lot of that work from Blueprint code into C++ code.
+                    </p>
+
+                    <div class="align-center">
+						<img src="images/isles/moveTarget.png"/>
+					</div>
+
+                    <p>
+                        The core of the rework was Unreal's Motion Warping plugin. The features provided by the plugin allowed us to easily add smooth movements with each
+                        attack animation, allowing the player to close gaps and providing a sense of forward momentum. A MoveTarget component was added to the player character
+                        to modify the location for an attack's motion warp. While the player is idle, the target will remain in the character's forward direction, but while
+                        the player is moving, they can manipulate their attack direction by moving the mouse or right analog stick. The distance of this target from the player
+                        is determined by an "AttackForce" variable tied to each animation, allowing us to tweak just how far a certain attack will carry the player. With these changes,
+                        we were now able to give the player the feeling of being able to jump between engagements with enemies on all sides, and (with knockback features implemented by 
+                        another teammate) press enemies backward.
+                    </p>
+
+					<h2>Reflection</h2>
+					<p>
+                        With an entire year's worth of development, there is a great deal to reflect on with Isles of Aether. Here are what I feel are the biggest takeaways I have from
+                        the entire experience.
+					</p>
+
+                    <ol>
+                        <li>
+                            <b>Leadership is necessary and important to establish early.</b> For our entire design phase of the game, we had no leadership aside from our designated Production Lead. 
+                            As a result, our game was designed by committee and could never adhere to a singular guiding vision. This resulted in mechanics that did not mesh
+                            well together, no real narrative direction, and increased difficulty in resolving disagreement. For me, the lesson learned is to design a game, you
+                            need a pitch, and to make that game, you need a Creative Director that understands the design inside out and can make changes or additions that all
+                            make sense within the game's design philosophies. At the very end of that semester, we held our very last vote to designate our different lead roles
+                            and hand people the authority needed to make decisions for the project as a whole, but I think that the end product was unfortunately limited by
+                            the lack of a true vision for what it should be. That being said, I believe that our artists and composer did amazing work to add character and expressiveness
+                            to the little world and story design we were able to offer, and their talents do clearly shine in our project.
+                        </li>
+                        <li>
+                            <b>Get feedback early and often.</b> This is standard game development advice that I've heard several times before, but our work on this project made the
+                            sentiment felt and demonstrated why it is important. By the time SGC was coming around, a lot of the core mechanics had been implemented in the game,
+                            and we (leadership) were beginning to struggle with providing our engineers with new tasks. Receiving feedback at SGC showed us the key areas that we truly
+                            needed to focus on and exposed the features that were the most lacking in polish. This resulted in a pivot away from building out our magic system to add
+                            all of the abilities we wanted players to acquire throughout the game toward our reworking of combat and a renewed focus on the intelligence of our
+                            enemy AI. In my opinion, this was a major course correction which significantly improved the quality of our product.
+                        </li>
+                        <li>
+                            <b>Learn as much as you can from the other members on your team.</b> After developing the magic system, I had to find something new to do, and that turned out to be working on
+                            improvements to the game's melee combat feel. Along the way, I ended up delving quite a bit into Unreal's animation features and animation in general to
+                            learn what makes attack animations feel good and what I can do to tweak an animation in that direction. Justin, our resident animator, was able to show me a lot 
+                            that I didn't know about the animation process and how animations work in Unreal. Before working on implementing the sprint attack, I did not know what the difference was between Animation Sequences
+                            and Montages, what AnimNotifiers were, or how Animation Blueprints work. Now that I've worked with all of these and understand them to a moderate extent, I can be a much more effective
+                            member of any Unreal team. I think that as a game developer, it is important to at least have basic knowledge about all the tools your engine provides, and talking to a teammate
+                            who specializes in the area you need to know more about is probably the best way to learn quickly.
+                        </li>
+                    </ol>
+
+                    <p>
+                        Our year of development was not without major setbacks and misfortune (our month without Perforce and the cancellation of ECGC 2024 come to mind), and I am
+                        without a doubt proud of the work that myself and my team were able to accomplish through it all. Though the scope of our final product is quite small,
+                        I think that the level of polish we were able to give to this little piece of a game is incredible given that we were all juggling the most difficult classes of our
+                        college careers, and for some of us, an actual career on top of that. While there are no plans to develop this game further post-graduation, all of us highly enjoyed
+                        getting to know and work with each other over the past year, and a majority of our team intends to continue working on new projects together. Whether that be as
+                        a part time hobby or a true business venture, I believe that a lot of us have become lifelong friends and collaborators, which might just be more valuable than
+                        all of the programming knowledge I gained from this.
+                    </p>
+
+				</div>
+			</section>
+		</section>
+
+		<!-- Footer -->
+		<div id="footer"></div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
