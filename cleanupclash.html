@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Tyler Cobb -- Cleanup Clash</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script
+		src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+		<script>
+			$(function()
+			{
+				$('#navigation').load("assets/htmlcommon/navheader.html");
+				$('#footer').load("assets/htmlcommon/footer.html");
+			}
+			)
+		</script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Nav Header -->
+		<div id="navigation"></div>
+
+		<!-- Wrapper -->
+		<section id="wrapper" style="margin-top: 80px;">
+		
+            <!-- Title -->
+			<div id="wrapper" class="divided">
+				<section class="wrapper style1 align-center">
+					<div class="inner">
+						<h1>Cleanup Clash</h1>
+					</div>
+				</section>
+			</div>
+			
+			<div class="content">
+                <!-- Trailer -->
+				<div class="align-center">
+					<iframe width="960" height="540" src="https://www.youtube.com/embed/SDuF4-dBG4A?=1" allowfullscreen="true"></iframe>
+				</div>
+
+                <!-- Page Content -->
+				<h2>Project Description</h2>
+				<p>
+                    Cleanup Clash is a game jam project created alongside a team of eight others for Shawnee State University's 2024 Spring Jam.
+                    We had a week to submit the project, but most of my involvement took place over the final weekend as I spent the week getting ahead
+                    on assignments. The game is an arcade-style competitive multiplayer game built in Unreal Engine 5 and designed around the theme of "Trash". 
+                    Players take on the role of workers representing two competing trash companies, tasked with proving that their company can clean up more trash quicker than
+                    the other can. My contribution to the project was the programming of player actions and implementation of animations.
+				</p>
+
+				<h2>Accomplishments</h2>
+				<ul>
+					<li>Built a simple state machine for the player.</li>
+					<li>Programmed the player's melee attack and dodge roll.</li>
+					<li>Implemented animations for the dodge and lever pull actions.</li>
+					<li>Managed the project in the run-up to the jam deadline and handled submission.</li>
+				</ul>
+
+				<div class="align-center">
+					<img src="images/cleanup-clash/MeleeAttack.gif" />
+				</div>
+
+				<h2>Objectives and Implementation</h2>
+
+
+				<div class="align-center">
+					<img src="images/cleanup-clash/PlayerStates.png" />
+				</div>
+
+				<p>
+					With the end of my senior semester approaching, my only goal with this jam was to have some fun and help the team realize whatever
+                    concept we came up with. My first task was to give the player a simple melee attack that caused players of the opposing team to briefly become
+                    stunned and drop a portion of their held trash. To help with this task, I first developed a simple state machine for the player. In other projects I've
+                    worked on, the team frequently struggled to manage a dozen distinct boolean variables to determine which actions a character can take at any time. By
+                    locking those actions behind specific current states out of a state enum instead, the code ends up being a lot easier to write and follow.
+				</p>
+				<div class="align-center">
+					<img src="images/cleanup-clash/DropTrash.png" />
+				</div>
+				<p>
+					This code shows how I made the trash "explode" out of characters on hit. When coding this function, I discovered the very handy "RandomUnitVectorInConeInDegrees"
+                    function from the math library. This allowed me to generate a random direction in a 90 degree window behind the hit character, scale that direction by a random float
+                    between 200 and 400, and set the spawned Trash object to move towards the location at that point. By randomizing the direction and distance of the flying trash, 
+                    a dynamic behavior is created that is much more interesting than the trash simply dropping at the character's feet. It also creates a bit of a spread between each
+                    dropped piece, forcing the players to scramble after each bit. 
+				</p> 
+				<div class="align-center">
+					<img src="images/cleanup-clash/LeverPullTimeline.png" />
+				</div>
+				<p>
+					The trickiest task I had during this project was to sync the lever pulling animation produced by our animator with the lever pull interaction in game. A major piece of my
+                    solution was a trick that I learned while developing <a href="isles.html" style="text-decoration: underline; font-style: italic;">Isles of Aether</a>: splitting the animation into two sequences. The first sequence, where the character
+                    jumps up to grab the lever, can play at a constant speed. The second, where the character is holding the lever and descending, needs to be played at a rate relative to the time
+                    remaining on the interaction. To help accomplish this, I learned about Montage Sections, which allow you to further divide an Animation Montage and set up or remove transitions
+                    between each Section. Using this tool, I was able to prevent the pulling section from playing automatically after the jump section. In code, after the jump section of the montage
+                    finishes playing, I could then immediately make a second call to play the Montage, this time beginning at the pull section and at the rate the section needed to be played at. 
+                    This resulted in a smooth transition between the two sections and proved to be a very effective solution to the problem of needing a variable play rate.
+				</p>
+
+				<div class="align-center">
+					<img src="images/cleanup-clash/LeverPull.gif" />
+				</div>
+				<h2>Reflection</h2>
+				<p>
+					This jam was a blast to participate in. Not only was I working with my long-time programming teammates and friends, but we also had exceptional artist talent
+                    backing us up as well. The style and characterization they were able to add to this tiny project, in my opinion, elevates it far above the majority of projects I've
+                    participated in. Even with my limited participation, I managed to make important contributions to the project, learn a couple things, and get to know new people.
+                    Our team even had a very low number of version control issues and made the submission deadline with time to spare! Overall, the jam was an overwhelming success.
+                    It's very possible that we could pick up the concepts explored in this project and develop them further in a more ambitious commercial project.
+				</p>
+				<ul class="actions stacked align-center">
+					<li><a href="https://golde582.itch.io/cleanup-clash" target="_blank" class="button">Download a build from Itch</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<div id="footer"></div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
