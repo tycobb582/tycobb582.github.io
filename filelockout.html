@@ -46,9 +46,9 @@
 					<h2>The Problem</h2>
 					<p>
                         Every collaborative programming project needs a version control system that suits its needs. For Unreal Engine projects, the VCS of choice tends to be Perforce
-                        because it handles large files well and includes a "check out" system that prevents other users from making edits to binary files that are marked "checked out" by
-                        a user. Unreal's custom asset types, including the map files and all Blueprint visual scripting files, are binary assets and cannot be edited by two people at once without
-                        causing complicated merge conflicts. In my experience, it works great! The #1 downside to using Perforce is that it is paid software. For small teams working on a project without funding, or game jam teams
+                        because it handles large files well and features an Unreal integration that prevents users from editing binary files that are claimed by another user. 
+                        Unreal's custom asset types, including the map files and all Blueprint visual scripting files, are binary assets and cannot be edited by two people at once without
+                        causing complicated merge conflicts. The #1 downside to using Perforce is that it is paid software. For small teams working on a project without funding, or game jam teams
                         trying to throw together a game in Unreal, it might be better to risk the conflicts and use a free option like GitHub.
                     </p>
 
@@ -60,30 +60,31 @@
                     <h2>The Solution</h2>
                     <p>
                         It didn't take long before an idea came to mind. While I might not be able to implement the same access restrictions that Perforce's checked out files have, it might be much easier
-                        to come up with a system that gives users a simple warning when they save changes to a file that has been marked by another. Going down that route, I came up with a three-step approach:
+                        to come up with a system that gives users a simple warning when they save changes to a file that is being edited by someone else. Going down that route, I came up with a three-step approach:
                     </p>
 
                     <ol>
                         <li>Create some "server" that replicates Perforce functionality (lists all files in the repository, which can be marked as checked out by a particular user).</li>
-                        <li>Create a Discord bot which runs on our team's Discord server, reflecting the list of locked files and pinging users who edit locked files.</li>
-                        <li>Create a script that each team member can run locally which notifies the Discord bot whenever the user edits a file locked by another.</li>
+                        <li>Create a Discord bot which runs on our team's Discord server, reflecting the list of locked files and allowing users to filter the list in useful ways.</li>
+                        <li>Create a script that each team member can run locally which warns them when they are editing a locked file and notifies the Discord bot of changes to a file's status.</li>
                     </ol>
 
                     <p>
-                        By no means will I try to claim that this is the best solution, but it was relatively simple and, most importantly, it works! It has already begun averting Blueprint conflicts in my
-                        team's project, and everyone seems satisfied with the system. The rest of this post will go into more detail about how each step works, and if any improvements come to your mind about how
+                        With so many different parts, I'm open to the idea that there could be a simpler solution out there. However, this didn't prove too difficult to
+                        implement, and it's solved a real problem for my team! It has already begun averting Blueprint conflicts in our project, and everyone seems satisfied with the system. 
+                        The rest of this post will go into more detail about how each step works, and if any improvements come to your mind about how
                         to improve it, I'd love to hear them!
                     </p>
 
                     <h2>Google Sheets and Apps Script</h2>
                     <p>
                         The solution that immediately came to mind for Step 1 was to use Google Sheets. Sheets are hosted online, easy to share, and have an accessible API. Looking into the platform
-                        further, I discovered a Google tool called Apps Script. Apps Script lets you write custom scripts in a C#-like language to work with Google products like Sheets and execute automatically on a regular basis. 
+                        further, I discovered a Google tool called Apps Script. Apps Script lets you write custom scripts in a C#-like language which can interact with Google products and execute automatically on a regular basis. 
                         It's also entirely free to use!
                     </p>
                         To populate the spreadsheet, then, I chose to create an accompanying script that would execute every 15 minutes or so. The script accesses the GitHub API, using a recursive function
                         to scan each folder in the repository for the binary .uasset and .umap files that can cause those troublesome conflicts. I chose to leave them out, but this solution could easily be modified
-                        to include your .cpp files if you want to track those as well. My solution also excludes files from Unreal __ExternalActors__ folders, since those are only edited through editing the .umap anyway
+                        to include your .cpp files if you want to track those as well. My solution also excludes files from Unreal's __ExternalActors__ folders, since those are only edited through editing the .umap anyway
                         and would only clutter the lockout list with incomprehensible file names.
                     <p>
 
@@ -94,7 +95,7 @@
                     </p>
                         This image shows the layout of the sheet: file names listed in alphabetical order, a visually clear green/red "In Use" selection, and then a field to store the name of the user with access to
                         the file. The script is constructed to preserve this information when updating the file list. In review, with this one simple script we have a centralized server that shows all our binary project files,
-                        updates automatically to add created files or remove deleted files, and can associate all the data we want to associate with these files. Pretty handy!
+                        updates automatically to include new files or remove deleted files, and can associate all the data we want to associate with these files. Pretty handy!
                     </p>
 
                     <h2>Version Control Bot</h2>
@@ -110,7 +111,7 @@
 
                     <p>
                         The main purpose of the bot is to maintain a single Discord message, as shown in the image above. The message displays a list of all assets marked as
-                        locked, along with the user who is currently editing it, as marked on the Google Sheet. Each time a file's locked state changes, the bot is notified and rescans
+                        locked, along with the user who is currently editing it, as marked on the Google Sheet. Each time a file's locked state changes, the bot receives a notification and rescans
                         the sheet to keep its own list up to date. This allows the team to check at a glance which files are locked, and by whom. The bot also comes equipped with a command
                         to list all files locked by a specific user as a way to filter the list in case it becomes crowded. To avoid cluttering the channel, the response to the command is
                         automatically deleted by the bot after one minute.
@@ -132,14 +133,14 @@
                     </p>
 
                     <p>
-                        My other major challenge was to figure out how to have this program communicate with Discord. It needed to tell the bot when it should update it's locked files list and it needed to ping
-                        users who began editing locked files. This is the part of my solution that feels the most janky, but I was able to achieve this functionality using a wehook. To notify the bot of changes in a file's locked
-                        status, it sends a special message to a separate channels dedicated to this webhook. The message deletes itself after a second, giving just enough time for the bot's on_message event to see it and react. This channel
+                        My other major challenge was to figure out how to have this program communicate with Discord. It needed to tell the bot when it should update its locked files list and it needed to ping
+                        users who began editing locked files. This is the part of my solution that feels the most janky, but I was able to achieve this functionality using a webhook. To notify the bot of changes in a file's locked
+                        status, it sends a special message to a separate channel dedicated to this webhook. The message deletes itself after a second, giving just enough time for the bot's on_message event to see it and react. This channel
                         also doubles as the spot where warning pings are sent, meaning that all team members can safely mute it without missing anything relevant to them.
                     </p>
 
                     <p>
-                        To make the program easy to run for the other team members, I used pyinstaller to package it as an executIable. You'll want to find some way to automate running this program
+                        To make the program easy to run for the other team members, I used pyinstaller to package it as an executable. You'll want to find some way to automate running this program
                         so that you and your team don't forget, resulting in avoidable conflicts. Some team members chose to run the program as a startup app on their PC, others who are using
                         Rider as their IDE were able to create a new run configuration for the program, which can be run concurrently with our Unreal project as a "Compound" configuration.
                     </p>
@@ -151,7 +152,7 @@
                         exactly what I was hoping for. While I'll admit that it's probably not the most elegant approach, it is functional, cost effective, and it's guaranteed to work no matter how large
                         or small the team is. I'm proud to have developed this tool that will provide a tangible benefit to my team, and it was great opportunity to learn about using different APIs (Sheets, Discord, 
                         and GitHub). If you would like to use this tool with your own team, you can grab the code I used for each script from the link below, and the README on the repository will have detailed instructions for
-                        how to set everything up! I plan to make more dev log posts on this site to share progress and things I learn while working on my current project, so stayed tuned for those as well.
+                        how to set everything up! I plan to make more devlog posts on this site to share progress and things I learn while working on my current project, so stayed tuned for those as well.
                     </p>
 
 					<ul class="actions stacked align-center">
